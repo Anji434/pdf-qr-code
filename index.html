@@ -45,13 +45,36 @@
             margin-bottom: 15px;
         }
 
-        input {
-            width: 100%;
-            padding: 8px;
+        input[type="file"] {
             margin-bottom: 10px;
+        }
+
+        select {
+            margin-bottom: 10px;
+            padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            background: #f5f5f5;
+            color: #000;
+            width: 100%;
+            max-width: 300px;
             box-sizing: border-box;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #333;
+            transform: scale(1.05);
         }
 
         #progress {
@@ -66,7 +89,7 @@
 
         #download-button {
             display: none;
-            background-color: #007BFF;
+            background-color: #000;
             color: #fff;
             padding: 10px;
             border-radius: 5px;
@@ -75,7 +98,7 @@
         }
 
         #download-button:hover {
-            background-color: #0056b3;
+            background-color: #333;
         }
     </style>
 </head>
@@ -83,6 +106,12 @@
     <div class="pdf-qr-generator">
         <h2>Generate PDF QR Code</h2>
         <input type="file" id="pdf-file" accept="application/pdf" onchange="uploadAndGenerateQRCode()">
+        <select id="qrSize">
+            <option value="128">Small (128x128)</option>
+            <option value="256">Medium (256x256)</option>
+            <option value="512">Large (512x512)</option>
+        </select>
+        <button onclick="generateQRCode()">Generate QR Code</button>
         <div id="progress">Uploading...</div>
         <div id="qrcode"></div>
         <a id="download-button" href="#" download="qrcode.png">Download QR Code</a>
@@ -142,7 +171,7 @@
         }
 
         function generateQRCode(pdfURL) {
-            const size = 256; // QR code size
+            const size = document.getElementById('qrSize').value;
             const canvas = document.createElement('canvas');
             const qrcodeContainer = document.getElementById('qrcode');
             const downloadButton = document.getElementById('download-button');
