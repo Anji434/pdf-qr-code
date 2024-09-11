@@ -61,22 +61,6 @@
             box-sizing: border-box;
         }
 
-        button {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            margin-top: 10px;
-        }
-
-        button:hover {
-            background-color: #333;
-            transform: scale(1.05);
-        }
-
         #progress {
             display: none;
             color: #333;
@@ -111,7 +95,6 @@
             <option value="256">Medium (256x256)</option>
             <option value="512">Large (512x512)</option>
         </select>
-        <button onclick="generateQRCode()">Generate QR Code</button>
         <div id="progress">Uploading...</div>
         <div id="qrcode"></div>
         <a id="download-button" href="#" download="qrcode.png">Download QR Code</a>
